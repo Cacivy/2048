@@ -1,7 +1,8 @@
-import React, { Component, KeyboardEvent } from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
 import { Square } from './'
+import { MoveType } from '../model/'
 
 interface SquareModel {
   value: number
@@ -16,8 +17,19 @@ interface SquareListProps {
 }
 @observer
 class SquareList extends Component<SquareListProps> {
-  onKeyDown = (ev: KeyboardEvent<any>) => {
-    ev.preventDefault()
+  componentDidMount () {
+    document.body.addEventListener('keydown', this.onKeyDown)
+  }
+
+  componentWillUnmount () {
+    document.body.removeEventListener('keydown', this.onKeyDown)
+  }
+
+  onKeyDown = (ev: KeyboardEvent) => {
+    if (MoveType[ev.keyCode]) {
+      ev.preventDefault()
+    }
+    
     this.props.onMove(ev.keyCode)
   }
 
@@ -26,7 +38,6 @@ class SquareList extends Component<SquareListProps> {
       <div
         className={this.props.className}
         tabIndex={0}
-        onKeyDown={this.onKeyDown}
       >
         <table>
           <tbody>

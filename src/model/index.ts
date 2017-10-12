@@ -7,7 +7,7 @@ const Item = types.model({
   y: types.number
 })
 
-enum MoveType {
+export enum MoveType {
   'left' = 37,
   'right' = 39,
   'up' = 38,

@@ -30,6 +30,7 @@ const Store = types
       let value = getRandomInt(1, 2) * 2
       let item = getItemByXY(x, y)
       if (!self.list.some(l => l.value === 0)) {
+        alert('fail')
         return
       }
       while (item.value > 0) {

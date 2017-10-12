@@ -17,11 +17,11 @@ interface SquareListProps {
 }
 @observer
 class SquareList extends Component<SquareListProps> {
-  componentDidMount () {
+  componentDidMount() {
     document.body.addEventListener('keydown', this.onKeyDown)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     document.body.removeEventListener('keydown', this.onKeyDown)
   }
 
@@ -29,16 +29,13 @@ class SquareList extends Component<SquareListProps> {
     if (MoveType[ev.keyCode]) {
       ev.preventDefault()
     }
-    
+
     this.props.onMove(ev.keyCode)
   }
 
   render() {
     return (
-      <div
-        className={this.props.className}
-        tabIndex={0}
-      >
+      <div className={this.props.className}>
         <table>
           <tbody>
             {[0, 1, 2, 3].reverse().map(y => (

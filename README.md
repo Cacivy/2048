@@ -21,6 +21,8 @@ git subtree push --prefix build origin gh-pages
 [ ] UI优化
 [ ] 移动端适配
 [ ] 成功/失败提示
+[ ] Timer
+[x] localStorage
 [ ] PWA
 
 ### THANKS

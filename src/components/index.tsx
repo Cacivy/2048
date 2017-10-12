@@ -1,0 +1,7 @@
+export {default as Header} from './Header'
+export {default as Logo} from './Logo'
+export {default as ScoreBoard} from './ScoreBoard'
+export {default as Content} from './Content'
+export {default as Controller} from './Controller'
+export {default as SquareList} from './SquareList'
+export {default as Square} from './Square'

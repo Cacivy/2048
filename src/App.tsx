@@ -58,7 +58,7 @@ const StyledApp = styled(App)`
   top: 0;
   transform: translateX(-50%);
   width: 640px;
-  height: 100%;
+  min-height: 100%;
   margin: 0 auto;
   background: #abc;
 `

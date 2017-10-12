@@ -3,11 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "precommit": "lint-staged",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "predeploy": "node scripts/build.js",
     "deploy": "gh-pages -d build",
     "test": "node scripts/test.js --env=jsdom"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --parser typescript --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "autoprefixer": "7.1.2",
@@ -51,7 +58,9 @@
     "@types/node": "^8.0.34",
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.1",
-    "gh-pages": "^1.0.0"
+    "codecov": "^2.3.0",
+    "gh-pages": "^1.0.0",
+    "lint-staged": "^4.2.3"
   },
   "jest": {
     "mapCoverage": true,

@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "pages": "git subtree push --prefix build origin gh-pages",
     "test": "node scripts/test.js --env=jsdom"
   },
   "dependencies": {

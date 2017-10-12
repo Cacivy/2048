@@ -41,6 +41,7 @@ const Store = types
       item.value = value
     }
     const init = () => {
+      self.score = 0
       self.list.clear()
       for (let x = 0; x < 4; x++) {
         for (let y = 0; y < 4; y++) {
@@ -92,9 +93,6 @@ const Store = types
             return current
           })
         }
-        xArr.forEach(item => {
-          getItemByXY(item.x, item.y).value = item.value
-        })
       })
       createRandomNum()
     }

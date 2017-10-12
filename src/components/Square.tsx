@@ -33,12 +33,17 @@ const colorMap = {
   2048: '#EA7821'
 }
 
+let innerWidth = window.innerWidth - 40
+let width = 100
+if (innerWidth < 416) {
+  width = Math.floor((innerWidth - 16) / 4)
+}
 const StyledSquare = styled(Square)`
   word-spacing: 0;
   background-color: ${props => colorMap[props.value] || '#EA7821'};
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
+  width: ${width}px;
+  height: ${width}px;
+  line-height: ${width}px;
   text-align: center;
   border-radius: 5px;
   font-size: 32px;

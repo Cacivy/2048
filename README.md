@@ -34,3 +34,7 @@ git subtree push --prefix build origin gh-pages
 ### THANKS
 
 样式参考　[React-2048-game](https://github.com/devrsi0n/React-2048-game)
+
+### License
+
+[MIT](https://opensource.org/licenses/MIT)

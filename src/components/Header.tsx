@@ -20,7 +20,10 @@ class Header extends Component<HeaderProps> {
   render() {
     return (
       <div className={this.props.className}>
-        <Logo />
+        {
+          window.innerWidth > 600 &&
+          <Logo />
+        }
         <Title>2048</Title>
         <ScoreBoard score={this.props.score} best={4096} />
       </div>

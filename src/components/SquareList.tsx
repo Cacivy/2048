@@ -18,11 +18,44 @@ interface SquareListProps {
 @observer
 class SquareList extends Component<SquareListProps> {
   componentDidMount() {
-    document.body.addEventListener('keydown', this.onKeyDown)
+    if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+      let startX: number, startY: number, moveEndX, moveEndY, X, Y
+      document.body.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].pageX
+        startY = e.touches[0].pageY
+      })
+      let startTime = Date.now()
+      document.body.addEventListener('touchmove', e => {
+        e.preventDefault()
+        let newTime = Date.now()
+        if (newTime - startTime < 300) {
+          return
+        }
+        startTime = newTime
+        moveEndX = e.changedTouches[0].pageX
+        moveEndY = e.changedTouches[0].pageY
+        X = moveEndX - startX
+        Y = moveEndY - startY
+        if (X > 0) {
+          this.props.onMove(MoveType.right)
+        } else if (X < 0) {
+          this.props.onMove(MoveType.left)
+        } else if (Y > 0) {
+          this.props.onMove(MoveType.down)
+        } else if (Y < 0) {
+          this.props.onMove(MoveType.up)
+        }
+      })
+    } else {
+      document.body.addEventListener('keydown', this.onKeyDown)
+    }
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener('keydown', this.onKeyDown)
+    if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+    } else {
+      document.body.removeEventListener('keydown', this.onKeyDown)
+    }
   }
 
   onKeyDown = (ev: KeyboardEvent) => {
@@ -53,8 +86,9 @@ class SquareList extends Component<SquareListProps> {
     )
   }
 }
+let width = window.innerWidth - 40
 const StyledSquareList = styled(SquareList)`
-  width: 416px;
+  width: ${width > 416 ? 416 : width}px;
   margin: 0 auto;
   word-spacing: -6px;
 `

@@ -24,6 +24,7 @@ git subtree push --prefix build origin gh-pages
 [ ] Timer
 [x] localStorage
 [ ] PWA
+[ ] i18n
 
 ### THANKS
 

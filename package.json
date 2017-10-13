@@ -8,7 +8,9 @@
     "build": "node scripts/build.js",
     "predeploy": "node scripts/build.js",
     "deploy": "gh-pages-with-token -d build",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "ci": "cross-env CI=true node scripts/test.js",
+    "codecov": "cross-env CI=true node scripts/test.js --coverage && codecov"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -54,14 +56,21 @@
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
+    "@types/enzyme": "^2.8.12",
+    "@types/enzyme-adapter-react-16": "^1.0.0",
     "@types/jest": "^21.1.2",
     "@types/node": "^8.0.34",
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.1",
+    "@types/react-test-renderer": "^16.0.0",
     "codecov": "^2.3.0",
+    "cross-env": "^5.0.5",
+    "enzyme": "^3.1.0",
+    "enzyme-adapter-react-16": "^1.0.1",
     "gh-pages": "^1.0.0",
     "gh-pages-with-token": "^1.0.0",
-    "lint-staged": "^4.2.3"
+    "lint-staged": "^4.2.3",
+    "react-test-renderer": "^16.0.0"
   },
   "jest": {
     "mapCoverage": true,
@@ -75,7 +84,7 @@
       "<rootDir>/src/**/__tests__/**/*.ts?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).ts?(x)"
     ],
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
@@ -113,5 +122,6 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  "homepage": "http://cacivy.github.io/2048"
 }

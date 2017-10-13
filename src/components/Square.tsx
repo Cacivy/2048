@@ -18,7 +18,7 @@ class Square extends Component<SquareProps> {
   }
 }
 
-const colorMap = {
+export const colorMap = {
   0: '#CCC0B3',
   2: '#EEE4DA',
   4: '#EDE0C8',

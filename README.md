@@ -1,10 +1,11 @@
 # 2048
 [![Build Status](https://travis-ci.org/Cacivy/2048.svg?branch=master)](https://travis-ci.org/Cacivy/2048)
+[![codecov](https://codecov.io/gh/Cacivy/2048/branch/master/graph/badge.svg)](https://codecov.io/gh/Cacivy/2048)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](#badge)
 
 + style-components　可以说是非常好用了，相对于css modules
 + mobx-state-tree 实现状态管理，以及回退功能(Time travel)
-+ travis
++ travis + gh-pages 自动构建打包发布git pages
 + codecov
 
 
@@ -24,9 +25,9 @@ yarn reploy / git subtree push --prefix build origin gh-pages
 
 - [x] UI优化
 - [x] 移动端适配
-- [ ] 成功/失败提示
-- [ ] Timer
 - [x] localStorage
+- [ ] 成功/失败提示优化
+- [ ] Timer
 - [ ] PWA
 - [x] i18n
 - [ ] Test

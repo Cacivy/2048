@@ -30,7 +30,7 @@ yarn reploy / git subtree push --prefix build origin gh-pages
 - [ ] Timer
 - [ ] PWA
 - [x] i18n
-- [ ] Test
+- [x] Test
 
 ### THANKS
 

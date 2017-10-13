@@ -27,6 +27,9 @@ const Store = types
         self.best = score
       }
     }
+    const setValueByXY= (x: number, y: number, value: number) => {
+      getItemByXY(x, y).value = value
+    }
     const getItemByXY = (x: number, y: number) => {
       return self.list.find(l => l.x === x && l.y === y)
     }
@@ -152,7 +155,7 @@ const Store = types
         isGameOver()
       }
     }
-    return { getItemByXY, createRandomNum, isGameOver, init, move }
+    return { getItemByXY, setValueByXY, createRandomNum, isGameOver, init, move }
   })
 
 export default Store

@@ -17,19 +17,19 @@ yarn start
 
 yarn build
 
-git subtree push --prefix build origin gh-pages
+yarn reploy / git subtree push --prefix build origin gh-pages
 ```
 
 ### TODO
 
-[ ] UI优化
-[ ] 移动端适配
-[ ] 成功/失败提示
-[ ] Timer
-[x] localStorage
-[ ] PWA
-[ ] i18n
-[ ] Test
+- [ ] UI优化
+- [ ] 移动端适配
+- [ ] 成功/失败提示
+- [ ] Timer
+- [x] localStorage
+- [ ] PWA
+- [ ] i18n
+- [ ] Test
 
 ### THANKS
 

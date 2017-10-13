@@ -111,7 +111,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "tsConfigFile": "C:\\Projects\\cacivy\\2048\\tsconfig.test.json"
+        "tsConfigFile": "tsconfig.test.json"
       }
     }
   },

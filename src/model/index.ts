@@ -63,11 +63,11 @@ const Store = types
       }
       const isUpOrDown = type === MoveType.up || type === MoveType.down
       const isAscending = type === MoveType.up || type === MoveType.right
-      const arr = isAscending ? [0, 1, 2, 3] : [3, 2, 1, 0]
+      const arr = !isAscending ? [0, 1, 2, 3] : [3, 2, 1, 0]
       let isUpdate = false
       arr.forEach(index => {
         let xArr = self.list.filter(l => isUpOrDown ? l.x === index : l.y === index)
-        if (isAscending) {
+        if (!isAscending) {
           xArr = xArr.sort((a, b) => isUpOrDown ? a.y - b.y : a.x - b.x)
         } else {
           xArr = xArr.sort((a, b) => isUpOrDown ? b.y - a.y : b.x - a.x)
@@ -76,20 +76,20 @@ const Store = types
           xArr.reduce((prev, current) => {
             let prevValue = prev.value
             let currentValue = current.value
-            if (prevValue) {
-              if (currentValue) {
+            if (currentValue) {
+              if (prevValue) {
                 if (prevValue === currentValue) {
-                  current.value += prevValue
-                  self.score += current.value
-                  prev.value = 0
+                  prev.value += prevValue
+                  self.score += prev.value
+                  current.value = 0
                   isUpdate = true
-                  if (current.value === 2048) {
+                  if (prev.value === 2048) {
                     alert('success')
                   }
                 }
               } else {
-                current.value = prevValue
-                prev.value = 0
+                prev.value = currentValue
+                current.value = 0
                 isUpdate = true
               }
             }

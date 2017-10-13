@@ -63,7 +63,7 @@ const Store = types
       }
       const isUpOrDown = type === MoveType.up || type === MoveType.down
       const isAscending = type === MoveType.up || type === MoveType.right
-      const arr = !isAscending ? [0, 1, 2, 3] : [3, 2, 1, 0]
+      const arr = [0, 1, 2, 3] //!isAscending ? [0, 1, 2, 3] : [3, 2, 1, 0]
       let isUpdate = false
       arr.forEach(index => {
         let xArr = self.list.filter(l => isUpOrDown ? l.x === index : l.y === index)
@@ -72,7 +72,37 @@ const Store = types
         } else {
           xArr = xArr.sort((a, b) => isUpOrDown ? b.y - a.y : b.x - a.x)
         }
-        for(let i = 0;  i < 4; i++) {
+        xArr.forEach((item, index) => {
+          let current = item
+          for(let i = index; i > 0; i--) {
+            let prev = xArr[i - 1]
+            let prevValue = prev.value
+            let currentValue = current.value
+            if (currentValue) {
+              if (prevValue) {
+                if (prevValue === currentValue) {
+                  prev.value += prevValue
+                  self.score += prev.value
+                  current.value = 0
+                  current = prev
+                  isUpdate = true
+                  i = 0
+                  if (prev.value === 2048) {
+                    alert('success')
+                  }
+                } else {
+                  i = 0
+                }
+              } else {
+                prev.value = currentValue
+                current.value = 0
+                current = prev
+                isUpdate = true
+              }
+            }
+          }
+        })
+        /* for(let i = 0;  i < 4; i++) {
           xArr.reduce((prev, current) => {
             let prevValue = prev.value
             let currentValue = current.value
@@ -95,7 +125,7 @@ const Store = types
             }
             return current
           })
-        }
+         }*/
       })
       if (isUpdate) {
         createRandomNum()

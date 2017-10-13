@@ -2,7 +2,7 @@ import React from 'react'
 import Enzyme, { mount } from 'enzyme'
 import SquareList from './SquareList'
 import Adapter from 'enzyme-adapter-react-16'
-import Store, {MoveType} from '../model/'
+import Store, {MoveType} from '../model/store'
 
 Enzyme.configure({ adapter: new Adapter() })
 

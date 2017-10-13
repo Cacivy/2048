@@ -4,12 +4,6 @@ import { observer } from 'mobx-react'
 import { Logo, ScoreBoard } from './'
 
 const headerHeight = 60
-const Title = styled.h1`
-  display: inline-block;
-  line-height: ${headerHeight}px;
-  margin: 0 0 0 75px;
-  color: #2196f3;
-`
 
 interface HeaderProps {
   className?: string
@@ -20,11 +14,7 @@ class Header extends Component<HeaderProps> {
   render() {
     return (
       <div className={this.props.className}>
-        {
-          window.innerWidth > 600 &&
-          <Logo />
-        }
-        <Title>2048</Title>
+        <Logo />
         <ScoreBoard score={this.props.score} best={4096} />
       </div>
     )

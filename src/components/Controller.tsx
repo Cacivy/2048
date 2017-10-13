@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { observer } from 'mobx-react'
+import { Text } from '../utils/'
 
 const Button = styled.button`
   border: none;
   width 50px;
   padding: 10px 0;
-  background: #fff;
-  color: #2196f3;
+  background: #EEE4DA;
+  color: #776E65;
   border-radius: 2px;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.18), 0 1px 5px 0 rgba(0,0,0,.15);
   margin-left: 8px;
@@ -18,8 +19,7 @@ const Button = styled.button`
 
   &:hover {
     box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
-    background: #2196f3;
-    color: #fff;
+    background: #EDE0C8;
   }
 `
 interface ContollerProps {
@@ -33,8 +33,8 @@ class Contoller extends Component<ContollerProps> {
     const { className } = this.props
     return (
       <div className={className}>
-        <Button onClick={this.props.onPrev}>Back</Button>
-        <Button onClick={this.props.onReset}>Reset</Button>
+        <Button onClick={this.props.onPrev}>{Text.undo}</Button>
+        <Button onClick={this.props.onReset}>{Text.reset}</Button>
       </div>
     )
   }

@@ -1,15 +1,15 @@
-import styled, { keyframes } from 'styled-components'
-const logo = require('../assets/images/logo.svg')
+import styled from 'styled-components'
+const logo = require('../assets/images/logo.png')
 
-const rotate360 = keyframes`
-from {
-  transform: rotate(0deg);
-}
+// const rotate360 = keyframes`
+// from {
+//   transform: rotate(0deg);
+// }
 
-to {
-  transform: rotate(360deg);
-}
-`
+// to {
+//   transform: rotate(360deg);
+// }
+// `
 
 const Logo = styled.img.attrs({
   src: logo,
@@ -17,7 +17,6 @@ const Logo = styled.img.attrs({
 })`
   float: left;
   height: 60px;
-  animation: ${rotate360} infinite 20s linear;
 `
 
 export default Logo

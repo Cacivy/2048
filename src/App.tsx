@@ -61,7 +61,7 @@ const StyledApp = styled(App)`
   width: ${width > 640 ? 640 : width}px;
   min-height: 100%;
   margin: 0 auto;
-  background: #abc;
+  background: #F7F7F0;
 `
 
 export default StyledApp

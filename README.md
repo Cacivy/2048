@@ -22,18 +22,18 @@ yarn reploy / git subtree push --prefix build origin gh-pages
 
 ### TODO
 
-- [ ] UI优化
-- [ ] 移动端适配
+- [x] UI优化
+- [x] 移动端适配
 - [ ] 成功/失败提示
 - [ ] Timer
 - [x] localStorage
 - [ ] PWA
-- [ ] i18n
+- [x] i18n
 - [ ] Test
 
 ### THANKS
 
-样式参考　[React-2048-game](https://github.com/devrsi0n/React-2048-game)
+样式/i18n 参考 [React-2048-game](https://github.com/devrsi0n/React-2048-game)
 
 ### License
 

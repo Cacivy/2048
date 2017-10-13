@@ -5,3 +5,4 @@ const getRandomInt = (min: number, max: number): number => {
 }
 
 export { getRandomInt }
+export {default as Text} from './i18n'

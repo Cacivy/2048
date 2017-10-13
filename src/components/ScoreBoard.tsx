@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { Text } from '../utils/'
 
 const Score = styled.span`
 font-weight: bold;
@@ -13,11 +14,12 @@ interface ScoreBoardProps {
 class ScoreBoard extends Component<ScoreBoardProps> {
   render() {
     const { className, score, best } = this.props
+    let noRecord = Text.noRecord
     return (
       <div className={className}>
-        Score : <Score>{score || 'No Record'}</Score>
+        {Text.score} : <Score>{score || noRecord}</Score>
         <br />
-        Best : <Score>{best || 'No Record'}</Score>
+        {Text.best} : <Score>{best || noRecord}</Score>
       </div>
     )
   }
@@ -25,8 +27,8 @@ class ScoreBoard extends Component<ScoreBoardProps> {
 
 const StyledScoreBoard = styled(ScoreBoard)`
   float: right;
-  width: 150px;
-  color: #fff;
+  width: 100px;
+  color: #F67C5F;
   line-height: 30px;
   text-align: left;
 `

@@ -60,6 +60,7 @@
     "@types/react-dom": "^16.0.1",
     "codecov": "^2.3.0",
     "gh-pages": "^1.0.0",
+    "gh-pages-with-token": "^1.0.0",
     "lint-staged": "^4.2.3"
   },
   "jest": {

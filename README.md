@@ -1,4 +1,4 @@
-# 2048
+# <img src="./src/assets/images/logo.png" alt="logo" width="50" height="50" />
 [![Build Status](https://travis-ci.org/Cacivy/2048.svg?branch=master)](https://travis-ci.org/Cacivy/2048)
 [![codecov](https://codecov.io/gh/Cacivy/2048/branch/master/graph/badge.svg)](https://codecov.io/gh/Cacivy/2048)
 [![codebeat badge](https://codebeat.co/badges/4e11cf73-62e2-4321-8a67-195c555618cf)](https://codebeat.co/projects/github-com-cacivy-2048-master)

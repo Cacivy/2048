@@ -8,6 +8,7 @@ const headerHeight = 60
 interface HeaderProps {
   className?: string
   score: number
+  best: number
 }
 @observer
 class Header extends Component<HeaderProps> {
@@ -15,7 +16,7 @@ class Header extends Component<HeaderProps> {
     return (
       <div className={this.props.className}>
         <Logo />
-        <ScoreBoard score={this.props.score} best={4096} />
+        <ScoreBoard score={this.props.score} best={this.props.best} />
       </div>
     )
   }

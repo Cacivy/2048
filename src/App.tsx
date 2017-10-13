@@ -26,7 +26,7 @@ onSnapshot(store, snapshot => {
 })
 
 const previousState = () => {
-  if (currentFrame === 0) return
+  if (currentFrame <= 0) return
   currentFrame--
   applySnapshot(store, states[currentFrame])
   states.splice(currentFrame, 1)
@@ -40,7 +40,7 @@ class App extends React.Component<AppProps> {
   render() {
     return (
       <div className={this.props.className}>
-        <Header score={store.score} />
+        <Header score={store.score} best={store.best} />
         <Content
           list={store.list}
           onPrev={previousState}

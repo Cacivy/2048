@@ -21,16 +21,44 @@ const Store = types
     list: types.array(Item)
   })
   .actions(self => {
+    const setScore = (score: number) => {
+      self.score = score
+      if (score > self.best) {
+        self.best = score
+      }
+    }
     const getItemByXY = (x: number, y: number) => {
       return self.list.find(l => l.x === x && l.y === y)
+    }
+    const isGameOver = (): boolean => {
+      if (!self.list.some(l => l.value === 0)) {
+        let isDone = self.list.some(l => {
+          let right = getItemByXY(l.x + 1, l.y)
+          let left = getItemByXY(l.x - 1, l.y)
+          let up = getItemByXY(l.x, l.y + 1)
+          let down = getItemByXY(l.x, l.y - 1)
+          return (
+            (right && right.value === l.value) ||
+            (left && left.value === l.value) ||
+            (up && up.value === l.value) ||
+            (down && down.value === l.value)
+          )
+        })
+        if (!isDone) {
+          alert('fail')
+          return true
+        }
+      }
+      return false
     }
     const createRandomNum = () => {
       let x = getRandomInt(0, 3)
       let y = getRandomInt(0, 3)
       let value = getRandomInt(1, 2) * 2
       let item = getItemByXY(x, y)
-      if (self.list.findIndex(l => l.value === 0) === -1) {
-        alert('fail')
+
+      let result = isGameOver()
+      if (result) {
         return
       }
       while (item.value > 0) {
@@ -41,7 +69,7 @@ const Store = types
       item.value = value
     }
     const init = () => {
-      self.score = 0
+      setScore(0)
       self.list.clear()
       for (let x = 0; x < 4; x++) {
         for (let y = 0; y < 4; y++) {
@@ -75,7 +103,7 @@ const Store = types
         } else {
           xArr = xArr.sort((a, b) => (isUpOrDown ? b.y - a.y : b.x - a.x))
         }
-        // avoid 0422 right 0008 
+        // avoid 0422 right 0008
         let mergeCount = 0
         xArr.forEach((item, index) => {
           let current = item
@@ -89,7 +117,7 @@ const Store = types
                   // merge break
                   prev.value += prevValue
                   // scoring
-                  self.score += prev.value
+                  setScore(self.score + prev.value)
                   // clear
                   current.value = 0
                   // computed mergeCount
@@ -113,40 +141,18 @@ const Store = types
                 isUpdate = true
               }
             } else {
-              break;
+              break
             }
           }
         })
-        /* for(let i = 0;  i < 4; i++) {
-          xArr.reduce((prev, current) => {
-            let prevValue = prev.value
-            let currentValue = current.value
-            if (currentValue) {
-              if (prevValue) {
-                if (prevValue === currentValue) {
-                  prev.value += prevValue
-                  self.score += prev.value
-                  current.value = 0
-                  isUpdate = true
-                  if (prev.value === 2048) {
-                    alert('success')
-                  }
-                }
-              } else {
-                prev.value = currentValue
-                current.value = 0
-                isUpdate = true
-              }
-            }
-            return current
-          })
-         }*/
       })
       if (isUpdate) {
         createRandomNum()
+      } else {
+        isGameOver()
       }
     }
-    return { getItemByXY, createRandomNum, init, move }
+    return { getItemByXY, createRandomNum, isGameOver, init, move }
   })
 
 export default Store

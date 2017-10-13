@@ -17,38 +17,46 @@ interface SquareListProps {
 }
 @observer
 class SquareList extends Component<SquareListProps> {
+  node: HTMLDivElement
   componentDidMount() {
-    if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
+    // if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
       let startX: number, startY: number, moveEndX, moveEndY, X, Y
-      document.body.addEventListener('touchstart', function(e) {
+      this.node.addEventListener('touchstart', function(e) {
         startX = e.touches[0].pageX
         startY = e.touches[0].pageY
       })
-      let startTime = Date.now()
-      document.body.addEventListener('touchmove', e => {
+      let moving = false
+      this.node.addEventListener('touchmove', e => {
         e.preventDefault()
-        let newTime = Date.now()
-        if (newTime - startTime < 300) {
+        if (moving) {
           return
         }
-        startTime = newTime
+        moving = true
         moveEndX = e.changedTouches[0].pageX
         moveEndY = e.changedTouches[0].pageY
         X = moveEndX - startX
         Y = moveEndY - startY
-        if (X > 0) {
-          this.props.onMove(MoveType.right)
-        } else if (X < 0) {
-          this.props.onMove(MoveType.left)
-        } else if (Y > 0) {
-          this.props.onMove(MoveType.down)
-        } else if (Y < 0) {
-          this.props.onMove(MoveType.up)
+
+        let isX = Math.abs(X) - Math.abs(Y) > 0
+        let moveType: MoveType | undefined
+
+        if (isX) {
+          moveType = X > 0 ? MoveType.right : MoveType.left
+        } else {
+          moveType = Y > 0 ? MoveType.down : MoveType.up
         }
+
+        if (moveType) {
+          this.props.onMove(moveType)
+        }
+        
+        setTimeout(() => {
+          moving = false
+        }, 300)
       })
-    } else {
+    // } else {
       document.body.addEventListener('keydown', this.onKeyDown)
-    }
+    // }
   }
 
   componentWillUnmount() {
@@ -68,7 +76,7 @@ class SquareList extends Component<SquareListProps> {
 
   render() {
     return (
-      <div className={this.props.className}>
+      <div className={this.props.className} ref={node => this.node = node as HTMLDivElement}>
         <table>
           <tbody>
             {[0, 1, 2, 3].reverse().map(y => (

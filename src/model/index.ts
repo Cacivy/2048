@@ -29,7 +29,7 @@ const Store = types
       let y = getRandomInt(0, 3)
       let value = getRandomInt(1, 2) * 2
       let item = getItemByXY(x, y)
-      if (!self.list.some(l => l.value === 0)) {
+      if (self.list.findIndex(l => l.value === 0) === -1) {
         alert('fail')
         return
       }
@@ -64,6 +64,7 @@ const Store = types
       const isUpOrDown = type === MoveType.up || type === MoveType.down
       const isAscending = type === MoveType.up || type === MoveType.right
       const arr = isAscending ? [0, 1, 2, 3] : [3, 2, 1, 0]
+      let isUpdate = false
       arr.forEach(index => {
         let xArr = self.list.filter(l => isUpOrDown ? l.x === index : l.y === index)
         if (isAscending) {
@@ -81,6 +82,7 @@ const Store = types
                   current.value += prevValue
                   self.score += current.value
                   prev.value = 0
+                  isUpdate = true
                   if (current.value === 2048) {
                     alert('success')
                   }
@@ -88,13 +90,16 @@ const Store = types
               } else {
                 current.value = prevValue
                 prev.value = 0
+                isUpdate = true
               }
             }
             return current
           })
         }
       })
-      createRandomNum()
+      if (isUpdate) {
+        createRandomNum()
+      }
     }
     return { getItemByXY, createRandomNum, init, move }
   })

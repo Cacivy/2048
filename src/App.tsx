@@ -5,13 +5,12 @@ import { observer } from 'mobx-react'
 import Store from './model/'
 import { applySnapshot, onSnapshot } from 'mobx-state-tree'
 
-const local = localStorage.getItem('store')
+const local = window.localStorage ? window.localStorage.getItem('store') : ''
 const initData = local ? JSON.parse(local) : { list: [] }
 const store = Store.create(initData)
 if (!local) {
   store.init()
 }
-
 
 // Time travel
 var states: any[] = []
@@ -21,7 +20,9 @@ onSnapshot(store, snapshot => {
   if (currentFrame === states.length - 1) {
     currentFrame++
     states.push(snapshot)
-    localStorage.setItem('store', JSON.stringify(snapshot))
+    if (window.localStorage) {
+      window.localStorage.setItem('store', JSON.stringify(snapshot))
+    }
   }
 })
 

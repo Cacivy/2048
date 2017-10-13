@@ -63,42 +63,57 @@ const Store = types
       }
       const isUpOrDown = type === MoveType.up || type === MoveType.down
       const isAscending = type === MoveType.up || type === MoveType.right
-      const arr = [0, 1, 2, 3] //!isAscending ? [0, 1, 2, 3] : [3, 2, 1, 0]
+      const arr = [0, 1, 2, 3]
+      // isUpdate => createRandomNum
       let isUpdate = false
       arr.forEach(index => {
-        let xArr = self.list.filter(l => isUpOrDown ? l.x === index : l.y === index)
+        let xArr = self.list.filter(
+          l => (isUpOrDown ? l.x === index : l.y === index)
+        )
         if (!isAscending) {
-          xArr = xArr.sort((a, b) => isUpOrDown ? a.y - b.y : a.x - b.x)
+          xArr = xArr.sort((a, b) => (isUpOrDown ? a.y - b.y : a.x - b.x))
         } else {
-          xArr = xArr.sort((a, b) => isUpOrDown ? b.y - a.y : b.x - a.x)
+          xArr = xArr.sort((a, b) => (isUpOrDown ? b.y - a.y : b.x - a.x))
         }
+        // avoid 0422 right 0008 
+        let mergeCount = 0
         xArr.forEach((item, index) => {
           let current = item
-          for(let i = index; i > 0; i--) {
+          for (let i = index; i > 0; i--) {
             let prev = xArr[i - 1]
             let prevValue = prev.value
             let currentValue = current.value
             if (currentValue) {
               if (prevValue) {
-                if (prevValue === currentValue) {
+                if (prevValue === currentValue && !mergeCount) {
+                  // merge break
                   prev.value += prevValue
+                  // scoring
                   self.score += prev.value
+                  // clear
                   current.value = 0
-                  current = prev
+                  // computed mergeCount
+                  mergeCount++
                   isUpdate = true
-                  i = 0
+                  // success
                   if (prev.value === 2048) {
                     alert('success')
                   }
+                  break
                 } else {
-                  i = 0
+                  break
                 }
               } else {
+                // move continue
                 prev.value = currentValue
+                // clear
                 current.value = 0
+                // exchange
                 current = prev
                 isUpdate = true
               }
+            } else {
+              break;
             }
           }
         })

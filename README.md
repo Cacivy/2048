@@ -1,6 +1,7 @@
 # 2048
 [![Build Status](https://travis-ci.org/Cacivy/2048.svg?branch=master)](https://travis-ci.org/Cacivy/2048)
 [![codecov](https://codecov.io/gh/Cacivy/2048/branch/master/graph/badge.svg)](https://codecov.io/gh/Cacivy/2048)
+[![codebeat badge](https://codebeat.co/badges/4e11cf73-62e2-4321-8a67-195c555618cf)](https://codebeat.co/projects/github-com-cacivy-2048-master)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](#badge)
 
 + style-components　可以说是非常好用了，相对于css modules

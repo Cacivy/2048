@@ -144,7 +144,9 @@ const Store = types
                   isUpdate = true
                   // success
                   if (prev.value === 2048) {
-                    alert('success')
+                    setTimeout(() => {
+                      alert('success')
+                    }, 2000)
                   }
                 }
               }

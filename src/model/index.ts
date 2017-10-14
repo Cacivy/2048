@@ -11,21 +11,27 @@ if (!local) {
 var states: any[] = []
 var currentFrame = -1
 
+const setLocalStorageItem = (snapshot: Object) => {
+  if (window.localStorage) {
+    window.localStorage.setItem('store', JSON.stringify(snapshot))
+  }
+}
+
 onSnapshot(store, snapshot => {
   if (currentFrame === states.length - 1) {
     currentFrame++
     states.push(snapshot)
-    if (window.localStorage) {
-      window.localStorage.setItem('store', JSON.stringify(snapshot))
-    }
+    setLocalStorageItem(snapshot)
   }
 })
 
 const previousState = () => {
   if (currentFrame <= 0) return
   currentFrame--
-  applySnapshot(store, states[currentFrame])
+  let snapshot = states[currentFrame]
+  applySnapshot(store, snapshot)
   states.splice(currentFrame, 1)
+  setLocalStorageItem(snapshot)
 }
 
 export {

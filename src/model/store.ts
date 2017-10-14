@@ -1,5 +1,5 @@
 import { types } from 'mobx-state-tree'
-import { getRandomInt } from '../utils'
+import { getRandomInt, Text } from '../utils'
 
 const Item = types.model({
   value: types.optional(types.number, 0),
@@ -48,7 +48,7 @@ const Store = types
           )
         })
         if (!isDone) {
-          alert('fail')
+          alert(Text.failTip)
           return true
         }
       }
@@ -143,11 +143,11 @@ const Store = types
                   mergeCount++
                   isUpdate = true
                   // success
-                  if (prev.value === 2048) {
-                    setTimeout(() => {
-                      alert('success')
-                    }, 2000)
-                  }
+                  // if (prev.value === 2048) {
+                  //   setTimeout(() => {
+                  //     alert('success')
+                  //   }, 2000)
+                  // }
                 }
               }
             }

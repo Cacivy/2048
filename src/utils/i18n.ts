@@ -28,8 +28,15 @@ const data = {
     },
     tipContent: {
       cn: "使用键盘箭头键或者滑动屏幕控制方块;反悔了？点回退按钮回退到上一步的状态。",
-      en:
-        "Use keyboard arrow keys or touchmove control blocks;Click undo button to revert to last step status if you regrets"
+      en: "Use keyboard arrow keys or touchmove control blocks;Click undo button to revert to last step status if you regrets"
+    },
+    successTip: {
+      cn: "恭喜",
+      en: "sucess"
+    },
+    failTip: {
+      cn: "哎呀！不能动了",
+      en: "fail"
     }
   }
 };

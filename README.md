@@ -29,7 +29,7 @@ yarn reploy / git subtree push --prefix build origin gh-pages
 - [x] localStorage
 - [ ] 成功/失败提示优化
 - [ ] Timer
-- [ ] PWA
+- [x] PWA
 - [x] i18n
 - [x] Test
 

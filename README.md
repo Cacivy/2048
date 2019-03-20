@@ -8,6 +8,7 @@
 + mobx-state-tree 实现状态管理，以及回退功能(Time travel)
 + travis + gh-pages 自动构建打包发布git pages
 + codecov
++ drone
 
 
 ### DEV

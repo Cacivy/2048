@@ -1,0 +1,18 @@
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: node:10
+  commands:
+  - npm run ci
+  - npm run codecov
+  - npm run deploy
+
+trigger:
+  branch:
+  - master
+  event:
+  - push
+  - pull_request
+  - tag

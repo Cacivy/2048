@@ -3,7 +3,7 @@ name: default
 
 steps:
 - name: build
-  image: node:10
+  image: node
   commands:
   - npm install
   - npm run ci

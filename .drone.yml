@@ -5,9 +5,9 @@ steps:
 - name: build
   image: node
   commands:
-  - git config user.email "609448234@qq.com"
-  - git config user.name "cacivy"
   - npm install
+  - git config --global user.email "609448234@qq.com"
+  - git config --global user.name "cacivy"
   - npm run ci
   - npm run codecov
   - npm run deploy

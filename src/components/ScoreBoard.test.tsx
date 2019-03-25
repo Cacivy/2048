@@ -24,7 +24,7 @@ describe('Square Component', () => {
     const newWrapper = mount(
       <ScoreBoard score={score} best={best} />
     )
-      let $span = newWrapper.find('span span')
+      let $span = newWrapper.find('span')
       expect($span.at(0).text()).toBe(score.toString())
   })
 })

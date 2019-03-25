@@ -4,6 +4,11 @@ name: default
 steps:
 - name: build
   image: node
+  environment:
+    GH_TOKEN:
+      from_secret: GH_TOKEN
+    CODECOV_TOKEN:
+      from_secret: CODECOV_TOKEN
   commands:
   - npm install
   - git config --global user.email "609448234@qq.com"

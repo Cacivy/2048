@@ -6,4 +6,5 @@ interface NodeModule {
 
 interface Array<T> {
   remove: (item: any) => any
+  clear(): any;
 }

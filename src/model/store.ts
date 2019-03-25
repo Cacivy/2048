@@ -14,24 +14,34 @@ export enum MoveType {
   'down' = 40
 }
 
+interface Model {
+  score: number
+  best: number
+  list: {
+    value: number
+    x: number
+    y: number
+  }[]
+}
+
 const Store = types
   .model({
     score: 0,
     best: 0,
     list: types.array(Item)
   })
-  .actions(self => {
+  .actions((self: Model) => {
     const setScore = (score: number) => {
       self.score = score
       if (score > self.best) {
         self.best = score
       }
     }
-    const setValueByXY = (x: number, y: number, value: number) => {
-      getItemByXY(x, y).value = value
-    }
     const getItemByXY = (x: number, y: number) => {
-      return self.list.find(l => l.x === x && l.y === y)
+      return self.list.find(l => l.x === x && l.y === y) || { x: 0, y: 0, value: 0 }
+    }
+    const setValueByXY = (x: number, y: number, value: number) => {
+      getItemByXY(x, y)!.value = value
     }
     const isGameOver = (): boolean => {
       if (!self.list.some(l => l.value === 0)) {
@@ -45,7 +55,7 @@ const Store = types
             (left && left.value === l.value) ||
             (up && up.value === l.value) ||
             (down && down.value === l.value)
-          )
+          ) || false
         })
         if (!isDone) {
           alert(Text.failTip)
